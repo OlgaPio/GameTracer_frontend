@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/GameTracer_frontend/static/css/main.84bda866.css",
+    "main.js": "/GameTracer_frontend/static/js/main.7352e016.js",
+    "static/js/453.d7446e4a.chunk.js": "/GameTracer_frontend/static/js/453.d7446e4a.chunk.js",
+    "index.html": "/GameTracer_frontend/index.html",
+    "main.84bda866.css.map": "/GameTracer_frontend/static/css/main.84bda866.css.map",
+    "main.7352e016.js.map": "/GameTracer_frontend/static/js/main.7352e016.js.map",
+    "453.d7446e4a.chunk.js.map": "/GameTracer_frontend/static/js/453.d7446e4a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84bda866.css",
+    "static/js/main.7352e016.js"
+  ]
+}
