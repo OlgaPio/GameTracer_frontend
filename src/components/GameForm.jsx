@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const GameForm = ({ onGameAdded }) => {
+const GameForm = ({ onGameAdded, gameToEdit, onUpdateGame }) => {
   const [formData, setFormData] = useState({
     title: '',
     platform: '',
@@ -10,27 +10,37 @@ const GameForm = ({ onGameAdded }) => {
     image: ''
   });
 
+  useEffect(() => {
+    if (gameToEdit) {
+      setFormData(gameToEdit);
+    }
+  }, [gameToEdit]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`${process.env.REACT_APP_API_URL}/games`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-    onGameAdded();
-    setFormData({
-      title: '',
-      platform: '',
-      hoursPlayed: 0,
-      completed: false,
-      rating: 0,
-      image: ''
-    });
+    if (gameToEdit) {
+      await onUpdateGame(formData);
+    } else {
+      await fetch(`${process.env.REACT_APP_API_URL}/games`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      onGameAdded();
+      setFormData({
+        title: '',
+        platform: '',
+        hoursPlayed: 0,
+        completed: false,
+        rating: 0,
+        image: ''
+      });
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="game-form">
-      <h2>Agregar Juego</h2>
+      <h2>{gameToEdit ? 'Editar Juego' : 'Agregar Juego'}</h2>
       <input type="text" placeholder="Título" value={formData.title} 
         onChange={e => setFormData({...formData, title: e.target.value})} required />
       <input type="text" placeholder="Plataforma" value={formData.platform} 
@@ -48,7 +58,7 @@ const GameForm = ({ onGameAdded }) => {
           onChange={e => setFormData({...formData, completed: e.target.checked})} />
         Completado
       </label>
-      <button type="submit">Agregar Juego</button>
+      <button type="submit">{gameToEdit ? 'Actualizar Juego' : 'Agregar Juego'}</button>
     </form>
   );
 };
