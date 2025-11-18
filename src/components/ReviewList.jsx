@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReviewList = ({ reviews }) => {
+const ReviewList = ({ reviews, onDeleteReview }) => {
   return (
     <div className="review-list">
       <h2>Reseñas</h2>
@@ -12,6 +12,9 @@ const ReviewList = ({ reviews }) => {
           </div>
           <p>{review.content}</p>
           <small>{new Date(review.date).toLocaleDateString()}</small>
+          <div className="review-actions">
+            <button onClick={() => onDeleteReview(review._id)}>Eliminar Reseña</button>
+          </div>
         </div>
       ))}
     </div>
