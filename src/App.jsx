@@ -12,6 +12,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [view, setView] = useState('library');
   const [gameToEdit, setGameToEdit] = useState(null);
+  const [reviewToEdit, setReviewToEdit] = useState(null);
   const [selectedGameId, setSelectedGameId] = useState(null);
   const [filters, setFilters] = useState({
     platform: '',
@@ -69,6 +70,22 @@ function App() {
       });
       fetchReviews();
     }
+  };
+
+  const editReview = (review) => {
+    setView('edit-review');
+    setReviewToEdit(review);
+  };
+
+  const updateReview = async (reviewData) => {
+    await fetch(`${process.env.REACT_APP_API_URL}/reviews/${reviewToEdit._id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reviewData)
+    });
+    setView('reviews');
+    setReviewToEdit(null);
+    fetchReviews();
   };
 
   const viewGameReviews = (gameId) => {
@@ -164,10 +181,19 @@ function App() {
           <ReviewList 
             reviews={reviews} 
             onDeleteReview={deleteReview}
+            onEditReview={editReview}
           />
         )}
         {view === 'add-review' && (
           <ReviewForm games={games} onReviewAdded={fetchReviews} />
+        )}
+        {view === 'edit-review' && (
+          <ReviewForm 
+            games={games} 
+            onReviewAdded={fetchReviews}
+            reviewToEdit={reviewToEdit}
+            onUpdateReview={updateReview}
+          />
         )}
         {view === 'game-reviews' && (
           <div className="game-reviews-view">
@@ -176,6 +202,7 @@ function App() {
             <ReviewList 
               reviews={gameReviews} 
               onDeleteReview={deleteReview}
+              onEditReview={editReview}
             />
           </div>
         )}
