@@ -210,3 +210,47 @@ input[type="checkbox"] {
 .review-actions button:hover {
   background-color: #c0392b;
 }
+
+.filter-sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.filters, .sort {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-sort select {
+  width: auto;
+  min-width: 180px;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+  .filter-sort {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filters, .sort {
+    justify-content: center;
+  }
+  
+  .filter-sort select {
+    min-width: 150px;
+    flex: 1;
+  }
+}
