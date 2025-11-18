@@ -86,6 +86,26 @@ body {
   color: #666;
 }
 
+.game-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.game-actions button {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.delete-btn {
+  background-color: #e74c3c !important;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b !important;
+}
+
 .stars {
   color: #f39c12;
   font-size: 1.2rem;

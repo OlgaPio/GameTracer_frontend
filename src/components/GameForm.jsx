@@ -41,21 +41,27 @@ const GameForm = ({ onGameAdded, gameToEdit, onUpdateGame }) => {
   return (
     <form onSubmit={handleSubmit} className="game-form">
       <h2>{gameToEdit ? 'Editar Juego' : 'Agregar Juego'}</h2>
-      <input type="text" placeholder="Título" value={formData.title} 
-        onChange={e => setFormData({...formData, title: e.target.value})} required />
-      <input type="text" placeholder="Plataforma" value={formData.platform} 
-        onChange={e => setFormData({...formData, platform: e.target.value})} required />
-      <input type="number" placeholder="Horas jugadas" value={formData.hoursPlayed} 
-        onChange={e => setFormData({...formData, hoursPlayed: parseInt(e.target.value)})} />
-      <select value={formData.rating} onChange={e => setFormData({...formData, rating: parseInt(e.target.value)})}>
-        <option value={0}>Sin rating</option>
-        {[1,2,3,4,5].map(num => <option key={num} value={num}>{num} estrella{num !== 1 ? 's' : ''}</option>)}
+      <input type="text" placeholder="Título" value={formData.title}
+        onChange={e => setFormData({ ...formData, title: e.target.value })} required />
+      <select value={formData.platform} onChange={e => setFormData({ ...formData, platform: e.target.value })} required>
+        <option value="">Seleccionar plataforma</option>
+        <option value="PC">PC</option>
+        <option value="PlayStation">PlayStation</option>
+        <option value="Xbox">Xbox</option>
+        <option value="Nintendo Switch">Nintendo Switch</option>
+        <option value="Mobile">Mobile</option>
       </select>
-      <input type="text" placeholder="URL de imagen" value={formData.image} 
-        onChange={e => setFormData({...formData, image: e.target.value})} />
+      <input type="number" placeholder="Horas jugadas" value={formData.hoursPlayed}
+        onChange={e => setFormData({ ...formData, hoursPlayed: parseInt(e.target.value) })} />
+      <select value={formData.rating} onChange={e => setFormData({ ...formData, rating: parseInt(e.target.value) })}>
+        <option value={0}>Sin rating</option>
+        {[1, 2, 3, 4, 5].map(num => <option key={num} value={num}>{num} estrella{num !== 1 ? 's' : ''}</option>)}
+      </select>
+      <input type="text" placeholder="URL de imagen" value={formData.image}
+        onChange={e => setFormData({ ...formData, image: e.target.value })} />
       <label>
-        <input type="checkbox" checked={formData.completed} 
-          onChange={e => setFormData({...formData, completed: e.target.checked})} />
+        <input type="checkbox" checked={formData.completed}
+          onChange={e => setFormData({ ...formData, completed: e.target.checked })} />
         Completado
       </label>
       <button type="submit">{gameToEdit ? 'Actualizar Juego' : 'Agregar Juego'}</button>
