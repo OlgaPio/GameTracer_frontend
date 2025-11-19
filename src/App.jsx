@@ -119,7 +119,7 @@ function App() {
 
     if (filters.rating) {
       filteredGames = filteredGames.filter(game => 
-        game.rating >= parseInt(filters.rating)
+        game.rating === parseInt(filters.rating)
       );
     }
 
