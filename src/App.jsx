@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import config from './config'; 
 import GameLibrary from './components/GameLibrary';
 import GameForm from './components/GameForm';
 import ReviewList from './components/ReviewList';
@@ -27,20 +28,20 @@ function App() {
   }, []);
 
   const fetchGames = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/games`);
+    const response = await fetch(`${config.API_URL}/games`);
     const data = await response.json();
     setGames(data);
   };
 
   const fetchReviews = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/reviews`);
+    const response = await fetch(`${config.API_URL}/reviews`);
     const data = await response.json();
     setReviews(data);
   };
 
   const deleteGame = async (gameId) => {
     if (window.confirm('¿Estás seguro de eliminar este juego?')) {
-      await fetch(`${process.env.REACT_APP_API_URL}/games/${gameId}`, {
+      await fetch(`${config.API_URL}/games/${gameId}`, {
         method: 'DELETE'
       });
       fetchGames();
@@ -53,7 +54,7 @@ function App() {
   };
 
   const updateGame = async (gameData) => {
-    await fetch(`${process.env.REACT_APP_API_URL}/games/${gameToEdit._id}`, {
+    await fetch(`${config.API_URL}/games/${gameToEdit._id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(gameData)
@@ -65,7 +66,7 @@ function App() {
 
   const deleteReview = async (reviewId) => {
     if (window.confirm('¿Estás seguro de eliminar esta reseña?')) {
-      await fetch(`${process.env.REACT_APP_API_URL}/reviews/${reviewId}`, {
+      await fetch(`${config.API_URL}/reviews/${reviewId}`, {
         method: 'DELETE'
       });
       fetchReviews();
@@ -78,7 +79,7 @@ function App() {
   };
 
   const updateReview = async (reviewData) => {
-    await fetch(`${process.env.REACT_APP_API_URL}/reviews/${reviewToEdit._id}`, {
+    await fetch(`${config.API_URL}/reviews/${reviewToEdit._id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(reviewData)

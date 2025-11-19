@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import config from '../config'; 
 
 const GameForm = ({ onGameAdded, gameToEdit, onUpdateGame }) => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const GameForm = ({ onGameAdded, gameToEdit, onUpdateGame }) => {
     if (gameToEdit) {
       await onUpdateGame(formData);
     } else {
-      await fetch(`${process.env.REACT_APP_API_URL}/games`, {
+      await fetch(`${config.API_URL}/games`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

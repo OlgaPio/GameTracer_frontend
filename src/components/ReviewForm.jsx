@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import config from '../config'; 
 
 const ReviewForm = ({ games, onReviewAdded, reviewToEdit, onUpdateReview }) => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const ReviewForm = ({ games, onReviewAdded, reviewToEdit, onUpdateReview }) => {
     if (reviewToEdit) {
       await onUpdateReview(formData);
     } else {
-      await fetch(`${process.env.REACT_APP_API_URL}/reviews`, {
+      await fetch(`${config.API_URL}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
