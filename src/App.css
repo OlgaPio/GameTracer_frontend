@@ -231,6 +231,34 @@ input[type="checkbox"] {
   background-color: #c0392b;
 }
 
+.review-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.review-actions button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.review-actions button:first-child {
+  background-color: #3498db;
+}
+
+.review-actions button:first-child:hover {
+  background-color: #2980b9;
+}
+
+.review-actions button:last-child {
+  background-color: #e74c3c;
+}
+
+.review-actions button:last-child:hover {
+  background-color: #c0392b;
+}
+
 .filter-sort {
   display: flex;
   justify-content: space-between;
@@ -273,32 +301,4 @@ input[type="checkbox"] {
     min-width: 150px;
     flex: 1;
   }
-}
-
-.review-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.review-actions button {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  flex: 1;
-}
-
-.review-actions button:first-child {
-  background-color: #3498db;
-}
-
-.review-actions button:first-child:hover {
-  background-color: #2980b9;
-}
-
-.review-actions button:last-child {
-  background-color: #e74c3c;
-}
-
-.review-actions button:last-child:hover {
-  background-color: #c0392b;
 }
