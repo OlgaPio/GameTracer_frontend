@@ -21,12 +21,14 @@ const GameForm = ({ onGameAdded, gameToEdit, onUpdateGame }) => {
     e.preventDefault();
     if (gameToEdit) {
       await onUpdateGame(formData);
+      alert('¡Juego actualizado exitosamente!');
     } else {
       await fetch(`${config.API_URL}/games`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
+      alert('¡Juego agregado exitosamente!');
       onGameAdded();
       setFormData({
         title: '',

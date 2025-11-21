@@ -18,12 +18,14 @@ const ReviewForm = ({ games, onReviewAdded, reviewToEdit, onUpdateReview }) => {
     e.preventDefault();
     if (reviewToEdit) {
       await onUpdateReview(formData);
+      alert('¡Reseña actualizada exitosamente!');
     } else {
       await fetch(`${config.API_URL}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
+      alert('¡Reseña publicada exitosamente!');
       onReviewAdded();
       setFormData({ gameId: '', content: '', rating: 0 });
     }
